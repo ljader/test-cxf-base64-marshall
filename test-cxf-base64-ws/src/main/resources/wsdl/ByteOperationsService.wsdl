@@ -4,11 +4,11 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ByteOperationsService"
 	targetNamespace="http://www.example.org/ByteOperationsService">
 	<wsdl:types>
-		<xsd:schema targetNamespace="http://www.example.org/ByteOperationsService">
+		<xsd:schema targetNamespace="http://www.example.org/ByteOperationsService" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
 			<xsd:element name="CountBytesRequestType">
 				<xsd:complexType>
 					<xsd:sequence>
-						<xsd:element name="bytesToCount" type="xsd:base64Binary" />
+						<xsd:element name="bytesToCount" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" />
 					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
@@ -47,7 +47,7 @@
 	</wsdl:binding>
 	<wsdl:service name="ByteOperationsService">
 		<wsdl:port binding="tns:ByteOperationsSOAPBinding" name="ByteOperationsPort">
-			<soap:address location="http://localhost:8080/cxf/services/ByteOperationsService" />
+			<soap:address location="http://localhost:9080/test-cxf-base64-ws/services/ByteOperationsService" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
