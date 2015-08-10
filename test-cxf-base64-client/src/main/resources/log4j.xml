@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="TRACE" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] [%c] (%13F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="FILE_CXF_REQ_RESP" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.home}/logs/log_ws_cxf_req_resp.log" />
+		<param name="Append" value="false" />
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] [%c] (%13F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="pl.ljader">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.apache.cxf">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.apache.cxf.services" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="FILE_CXF_REQ_RESP" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.apache.http">
+		<level value="INFO" />
+	</logger>
+	<logger name="org.apache.http.wire">
+		<level value="INFO" />
+	</logger>
+	<logger name="org.apache.http.headers">
+		<level value="INFO" />
+	</logger>
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>
